@@ -40,11 +40,13 @@ a{color:inherit;text-decoration:none}
 .capitulo-cab p{margin-top:12px;color:var(--mudo);font-weight:700;font-size:13px;line-height:1.5}
 .capitulo-cab .conta{margin-top:18px;font:700 10px/1 Inter;letter-spacing:.24em;text-transform:uppercase;color:var(--ambar)}
 
-.grelha{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:150px;grid-auto-flow:dense;gap:4px}
-.peca{position:relative;overflow:hidden;background:var(--carta);cursor:zoom-in;grid-column:span 2}
-.peca.g{grid-column:span 4;grid-row:span 3}
-.peca.m{grid-column:span 3;grid-row:span 2}
-.peca.a{grid-column:span 2;grid-row:span 2}
+/* Todas as pecas sao 16:9 como as fotos: 6 colunas, linhas de meia altura.
+   Pequena 2x2, media 3x3, grande 4x4. --c e a largura de uma coluna. */
+.capitulo{container-type:inline-size}
+.grelha{--c:calc((100cqw - 292px - 20px)/6);display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:calc((var(--c)*2 + 4px)*9/32 - 2px);grid-auto-flow:dense;gap:4px}
+.peca{position:relative;overflow:hidden;background:var(--carta);cursor:zoom-in;grid-column:span 2;grid-row:span 2}
+.peca.g{grid-column:span 4;grid-row:span 4}
+.peca.m{grid-column:span 3;grid-row:span 3}
 .peca img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .peca:hover img{transform:scale(1.06)}
 .peca .veu{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0) 55%);opacity:0;transition:opacity .3s}
@@ -77,5 +79,5 @@ a{color:inherit;text-decoration:none}
 .seta{top:50%;transform:translateY(-50%)}
 .ant{left:10px}.seg{right:10px}
 
-@media(max-width:1000px){.capitulo{grid-template-columns:1fr;gap:20px}.capitulo-cab{position:static}.capitulo-cab .hora{font-size:44px}.grelha{grid-auto-rows:120px}.cta{grid-template-columns:1fr;text-align:left}}
-@media(max-width:720px){.menu a:not(.botao){display:none}.grelha{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}.peca,.peca.g,.peca.m,.peca.a{grid-column:span 1;grid-row:span 1}.peca.g{grid-column:span 2;grid-row:span 2}.cta{margin:48px var(--lat);padding:40px var(--lat)}.seta{display:none}}
+@media(max-width:1000px){.capitulo{grid-template-columns:1fr;gap:20px}.capitulo-cab{position:static;display:flex;align-items:baseline;gap:16px}.capitulo-cab .hora{font-size:44px}.capitulo-cab .conta{margin:0}.grelha{--c:calc((100cqw - 20px)/6)}.cta{grid-template-columns:1fr;text-align:left}}
+@media(max-width:720px){.menu a:not(.botao){display:none}.grelha{grid-template-columns:repeat(2,1fr);grid-auto-rows:calc((50cqw - 2px)*9/16)}.peca,.peca.g,.peca.m{grid-column:span 1;grid-row:span 1}.peca.g{grid-column:span 2;grid-row:span 2}.cta{margin:48px var(--lat);padding:40px var(--lat)}.seta{display:none}}

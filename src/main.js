@@ -27,11 +27,10 @@ async function carregar() {
 function hhmm(file) { const m = file.match(/_(\d{4})\d{2}\./); return m ? Number(m[1]) : 0; }
 function hora(file) { const m = file.match(/_(\d{2})(\d{2})\d{2}\./); return m ? `${m[1]}:${m[2]}` : ''; }
 
-// Dentro de cada capitulo: cronologico, com uma grande a cada 7 e uma media a cada 4.
+// Dentro de cada capitulo: cronologico; heroes grandes, as de 8+ medias de vez em quando.
 function tamanho(f, i) {
   if (f.hero) return 'g';
-  if (f.score >= 8 && i % 4 === 1) return 'm';
-  if (f.score >= 7 && i % 3 === 2) return 'a';
+  if (f.score >= 8 && i % 3 !== 0) return 'm';
   return '';
 }
 
