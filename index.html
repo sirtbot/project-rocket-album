@@ -1,243 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-PT">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚚 Project Rocket - Galeria</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 40px 60px;
-      background: linear-gradient(135deg, rgba(225, 29, 46, 0.1) 0%, transparent 100%);
-      border-bottom: 1px solid rgba(225, 29, 46, 0.1);
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-    }
-
-    .logo span {
-      color: #E11D2E;
-    }
-
-    .stats {
-      display: flex;
-      gap: 40px;
-      font-size: 0.9rem;
-      color: #999;
-    }
-
-    .gallery {
-      padding: 80px 60px;
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-
-    /* BENTO GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      grid-auto-rows: 240px;
-    }
-
-    .grid-item {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      background: #1a1a1a;
-      border: 1px solid rgba(225, 29, 46, 0.1);
-      opacity: 0;
-      transform: translateY(30px) scale(0.95);
-      transition: all 0.3s ease;
-    }
-
-    .grid-item:nth-child(3n) {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .grid-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .grid-item:hover {
-      transform: translateY(0) scale(1);
-      border-color: rgba(225, 29, 46, 0.6);
-      box-shadow: 0 20px 60px rgba(225, 29, 46, 0.2);
-    }
-
-    .grid-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .grid-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .grid-item:hover .grid-overlay {
-      opacity: 1;
-    }
-
-    .grid-overlay h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.98);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal.active { display: flex; }
-
-    .modal-img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      animation: zoom 0.3s ease;
-    }
-
-    @keyframes zoom {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      font-size: 2.5rem;
-      cursor: pointer;
-      color: #fff;
-      background: rgba(225, 29, 46, 0.8);
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-close:hover {
-      background: rgba(225, 29, 46, 1);
-    }
-
-    @media (max-width: 768px) {
-      .grid-item:nth-child(3n) {
-        grid-column: span 1;
-        grid-row: span 1;
-      }
-      .gallery { padding: 40px 20px; }
-      .header { padding: 20px; flex-direction: column; gap: 20px; }
-    }
-  </style>
+  <title>Project Rocket · Comboio 17/9</title>
+  <link rel="icon" href="/logo-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
-  <div class="header">
-    <div class="logo">🚚 PROJECT <span>ROCKET</span></div>
-    <div class="stats">
-      <div>📸 <span id="count">0</span> fotos</div>
-      <div>⚡ Selecionadas pela IA</div>
-    </div>
+  <header class="topo">
+    <a class="marca" href="/"><img src="/logo.svg" alt="Project Rocket"></a>
+    <nav class="filtros" id="filtros"></nav>
+  </header>
+
+  <section class="hero">
+    <div class="etiqueta">Comboio · 17 set 2026</div>
+    <h1 class="titulo"><span>Ninguém fica</span><span class="vermelho">para trás</span></h1>
+    <p class="sub"><b id="total">0</b> momentos da estrada, escolhidos foto a foto. <b class="ambar">Carrega numa</b> para abrir.</p>
+  </section>
+
+  <main class="grelha" id="grelha"></main>
+
+  <footer class="rodape">
+    <div class="quadrado"></div>
+    <span>NINGUÉM FICA PARA TRÁS</span>
+    <span class="direita">trucksbook.eu · Project Rocket</span>
+  </footer>
+
+  <div class="caixa" id="caixa" aria-hidden="true">
+    <button class="fechar" id="fechar" aria-label="Fechar">×</button>
+    <button class="seta ant" id="ant" aria-label="Anterior">‹</button>
+    <figure>
+      <img id="caixa-img" src="" alt="">
+      <figcaption><span id="caixa-legenda"></span><span class="contador" id="caixa-n"></span></figcaption>
+    </figure>
+    <button class="seta seg" id="seg" aria-label="Seguinte">›</button>
   </div>
 
-  <div class="gallery">
-    <div class="grid" id="grid"></div>
-  </div>
-
-  <div class="modal" id="modal" onclick="closeModal(event)">
-    <img id="modal-img" class="modal-img" src="" alt="">
-    <button class="modal-close" onclick="closeModal(event)">×</button>
-  </div>
-
-  <script type="module">
-    import gsap from 'https://cdn.jsdelivr.net/npm/gsap@3.12.2/index.js';
-
-    const photos = [
-      '/photos/ets2_1.jpg',
-      '/photos/ets2_2.jpg',
-      '/photos/ets2_3.jpg',
-      'https://media.discordapp.net/attachments/996508827501473922/1550253800668008478/image.png?ex=6aada9dc&is=6aac585c&hm=ccbf70db803ce6613ecfdf76b3266ea55b00e31ccce7aa0bf840c901cc99b824&=&format=webp&quality=lossless',
-      'https://media.discordapp.net/attachments/996508827501473922/1550253613555785758/image.png?ex=6aada9af&is=6aac582f&hm=04345f18d34868f5bddf4b3791162393462584cbe854fba232f7951c4f22fb8b&=&format=webp&quality=lossless',
-    ];
-
-    const grid = document.getElementById('grid');
-    
-    photos.forEach((url, i) => {
-      const item = document.createElement('div');
-      item.className = 'grid-item';
-      item.innerHTML = `
-        <img src="${url}" alt="Foto ${i+1}" loading="lazy">
-        <div class="grid-overlay">
-          <h3>📸 Foto ${i+1}</h3>
-        </div>
-      `;
-      item.onclick = () => openModal(url);
-      grid.appendChild(item);
-    });
-
-    document.getElementById('count').textContent = photos.length;
-
-    // Animações GSAP
-    gsap.to('.grid-item', {
-      duration: 0.7,
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      stagger: 0.08,
-      ease: 'power2.out'
-    });
-
-    window.openModal = (url) => {
-      document.getElementById('modal-img').src = url;
-      document.getElementById('modal').classList.add('active');
-    };
-
-    window.closeModal = (e) => {
-      if (e.target === document.getElementById('modal') || e.target.className === 'modal-close') {
-        document.getElementById('modal').classList.remove('active');
-      }
-    };
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') document.getElementById('modal').classList.remove('active');
-    });
-  </script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

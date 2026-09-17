@@ -1,0 +1,338 @@
+[
+ {
+  "file": "20260917_221639.jpg",
+  "score": 10,
+  "hero": true,
+  "tipo": "comboio",
+  "legenda": "Comboio sob céu azul brilhante",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_211228.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "paisagem",
+  "legenda": "Comboio de camiões ao entardecer",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221156.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "paisagem",
+  "legenda": "Estrada de montanha com neve",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221643.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "comboio",
+  "legenda": "Carro patrulha junto aos camiões coloridos",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_222314.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "comboio",
+  "legenda": "Comboio dourado pelo sol nascente",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221215.jpg",
+  "score": 8,
+  "hero": true,
+  "tipo": "paisagem",
+  "legenda": "Sinal do Furkapass entre camiões",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221644.jpg",
+  "score": 9,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Camiões contra montanha nevada iluminada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221125.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Comboio noturno na autoestrada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221148.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Comboio parado na neve",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221258.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Fila de camiões na curva alpina",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221744.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Camiões numa curva panorâmica alpina",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221818.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Fila de camiões coloridos na neve",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_222240.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Comboio a descer entre picos nevados",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_192519.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Viatura da empresa junto aos camiões",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_201841.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Três camiões lado a lado",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_201858.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Dois camiões frente a frente",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_212429.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "noite",
+  "legenda": "Pátio de camiões à noite",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221124.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Comboio visto do alto à noite",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221159.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Camiões estacionados na montanha nevada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221249.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camião azul em plano próximo",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221314.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Piloto conduz junto ao comboio",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221329.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Carro escolta junto ao comboio",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221646.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Três camiões junto aos picos rochosos",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221748.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Cisterna vermelha na curva da montanha",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221827.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Cisterna vermelha com riscas em zigue",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221829.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Scania Pure Dutch Steel em destaque",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_222304.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Comboio em curva com vista ampla",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_201846.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Dois camiões junto ao portão",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221114.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "noite",
+  "legenda": "Carro da equipa na serra",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221133.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Camiões aproximam se na noite",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221204.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Camiões alinhados na neve",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221242.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Camiões parados junto à serra",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221318.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Comboio junto à montanha nevada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221325.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Fila de camiões frente a frente",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221345.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camião verde a liderar o grupo",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221350.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Seis camiões alinhados na berma",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221555.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Carro patrulha abre o comboio",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221600.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camiões parados junto à esplanada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221746.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Cisternas coloridas encostadas à neve",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221814.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camiões estacionados sob céu limpo",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221832.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Cabine vermelha e preta ao lado do Volvo",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_222238.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Fila de camiões junto às montanhas",
+  "duplicada_de": null
+ }
+]
