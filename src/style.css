@@ -31,8 +31,17 @@ a{color:inherit;text-decoration:none}
 .accoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
 .capa-conteudo{padding-bottom:clamp(48px,9vh,110px)}
 
-.capitulos{padding:40px 0 20px}
+.modos{display:flex;gap:6px;padding:40px var(--lat) 0}
+.modos button{font:700 11px/1 Inter;letter-spacing:.18em;text-transform:uppercase;color:var(--mudo);background:transparent;border:1px solid var(--linha);padding:10px 14px;cursor:pointer;transition:.2s}
+.modos button:hover{color:#fff;border-color:#444}
+.modos button.activo{color:#fff;background:var(--vermelho);border-color:var(--vermelho)}
+.capitulos{padding:0 0 20px}
 .capitulo{padding:24px var(--lat) 40px}
+.capitulo.horas{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:48px var(--lat);border-top:1px solid var(--linha)}
+.capitulo.horas .grelha{--c:calc((100cqw - 232px - 20px)/6)}
+.capitulo-cab{position:sticky;top:96px;align-self:start}
+.capitulo-cab .hora{font:900 56px/1 Inter;letter-spacing:-.05em}
+.capitulo-cab .conta{margin-top:12px;font:700 10px/1 Inter;letter-spacing:.24em;text-transform:uppercase;color:var(--ambar)}
 
 /* Todas as pecas sao 16:9 como as fotos: 6 colunas, linhas de meia altura.
    Pequena 2x2, media 3x3, grande 4x4. --c e a largura de uma coluna. */
@@ -67,5 +76,5 @@ a{color:inherit;text-decoration:none}
 .seta{top:50%;transform:translateY(-50%)}
 .ant{left:10px}.seg{right:10px}
 
-@media(max-width:1000px){.cta{grid-template-columns:1fr;text-align:left}}
+@media(max-width:1000px){.capitulo.horas{grid-template-columns:1fr;gap:16px}.capitulo.horas .grelha{--c:calc((100cqw - 20px)/6)}.capitulo-cab{position:static;display:flex;align-items:baseline;gap:14px}.capitulo-cab .hora{font-size:40px}.capitulo-cab .conta{margin:0}.cta{grid-template-columns:1fr;text-align:left}}
 @media(max-width:720px){.menu a:not(.botao){display:none}.grelha{grid-template-columns:repeat(2,1fr);grid-auto-rows:calc((50cqw - 2px)*9/16)}.peca,.peca.g,.peca.m{grid-column:span 1;grid-row:span 1}.peca.g{grid-column:span 2;grid-row:span 2}.cta{margin:48px var(--lat);padding:40px var(--lat)}.seta{display:none}}

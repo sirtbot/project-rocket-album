@@ -4,7 +4,23 @@ gsap.registerPlugin(ScrollTrigger);
 
 const DISCORD = 'https://discord.gg/keBr8g3XaM';
 
+// Capitulos do modo "por hora": [hora minima (HHMM), hora a mostrar]
+const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22'], [2240, '22:47']];
+let modo = 'continua';
+try { modo = localStorage.getItem('modo') || modo; } catch {}
+
 const SEM_MOVIMENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function hhmm(file) { const m = file.match(/_(\d{4})\d{2}\./); return m ? Number(m[1]) : 0; }
+
+document.querySelectorAll('#modos button').forEach((b) => {
+  b.onclick = () => {
+    modo = b.dataset.modo;
+    try { localStorage.setItem('modo', modo); } catch {}
+    capitulos();
+    animar();
+  };
+});
 const $ = (s) => document.querySelector(s);
 let fotos = [], visiveis = [], actual = 0;
 
@@ -35,18 +51,31 @@ function capitulos() {
   main.innerHTML = '';
   const ordenadas = [...fotos].sort((a, b) => a.file.localeCompare(b.file));
   visiveis = ordenadas;
-  const sec = document.createElement('section');
-  sec.className = 'capitulo';
-  sec.innerHTML = '<div class="grelha"></div>';
-  const grelha = sec.querySelector('.grelha');
-  ordenadas.forEach((f, i) => {
+  const peca = (f, i) => {
     const el = document.createElement('article');
     el.className = `peca ${tamanho(f, i)}`;
     el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="Comboio ${hora(f.file)}" loading="lazy">`;
-    el.onclick = () => abrir(i);
-    grelha.appendChild(el);
-  });
-  main.appendChild(sec);
+    el.onclick = () => abrir(ordenadas.indexOf(f));
+    return el;
+  };
+  const seccao = (lista, cab = '') => {
+    const sec = document.createElement('section');
+    sec.className = 'capitulo' + (cab ? ' horas' : '');
+    sec.innerHTML = `${cab}<div class="grelha"></div>`;
+    const grelha = sec.querySelector('.grelha');
+    lista.forEach((f, i) => grelha.appendChild(peca(f, i)));
+    main.appendChild(sec);
+  };
+  if (modo === 'horas') {
+    CAPITULOS.forEach(([min, h], c) => {
+      const max = CAPITULOS[c + 1]?.[0] ?? 9999;
+      const lista = ordenadas.filter((f) => hhmm(f.file) >= min && hhmm(f.file) < max);
+      if (lista.length) seccao(lista, `<div class="capitulo-cab"><div class="hora">${h}</div><div class="conta">${lista.length} fotos</div></div>`);
+    });
+  } else {
+    seccao(ordenadas);
+  }
+  document.querySelectorAll('#modos button').forEach((b) => b.classList.toggle('activo', b.dataset.modo === modo));
 }
 
 function animar() {
