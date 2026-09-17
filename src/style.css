@@ -32,18 +32,12 @@ a{color:inherit;text-decoration:none}
 .capa-conteudo{padding-bottom:clamp(48px,9vh,110px)}
 
 .capitulos{padding:40px 0 20px}
-.capitulo{display:grid;grid-template-columns:260px 1fr;gap:32px;padding:56px var(--lat);border-top:1px solid var(--linha)}
-.capitulo-cab{position:sticky;top:96px;align-self:start}
-.capitulo-cab .hora{font:900 64px/1 Inter;letter-spacing:-.05em}
-.capitulo-cab h2{font-weight:900;text-transform:uppercase;letter-spacing:-.03em;font-size:22px;margin-top:10px}
-.capitulo-cab h2 span{color:var(--vermelho)}
-.capitulo-cab p{margin-top:12px;color:var(--mudo);font-weight:700;font-size:13px;line-height:1.5}
-.capitulo-cab .conta{margin-top:18px;font:700 10px/1 Inter;letter-spacing:.24em;text-transform:uppercase;color:var(--ambar)}
+.capitulo{padding:24px var(--lat) 40px}
 
 /* Todas as pecas sao 16:9 como as fotos: 6 colunas, linhas de meia altura.
    Pequena 2x2, media 3x3, grande 4x4. --c e a largura de uma coluna. */
 .capitulo{container-type:inline-size}
-.grelha{--c:calc((100cqw - 292px - 20px)/6);display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:calc((var(--c)*2 + 4px)*9/32 - 2px);grid-auto-flow:dense;gap:4px}
+.grelha{--c:calc((100cqw - 20px)/6);display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:calc((var(--c)*2 + 4px)*9/32 - 2px);grid-auto-flow:dense;gap:4px}
 .peca{position:relative;overflow:hidden;background:var(--carta);cursor:zoom-in;grid-column:span 2;grid-row:span 2}
 .peca.g{grid-column:span 4;grid-row:span 4}
 .peca.m{grid-column:span 3;grid-row:span 3}
@@ -73,5 +67,5 @@ a{color:inherit;text-decoration:none}
 .seta{top:50%;transform:translateY(-50%)}
 .ant{left:10px}.seg{right:10px}
 
-@media(max-width:1000px){.capitulo{grid-template-columns:1fr;gap:20px}.capitulo-cab{position:static;display:flex;align-items:baseline;gap:16px}.capitulo-cab .hora{font-size:44px}.capitulo-cab .conta{margin:0}.grelha{--c:calc((100cqw - 20px)/6)}.cta{grid-template-columns:1fr;text-align:left}}
+@media(max-width:1000px){.cta{grid-template-columns:1fr;text-align:left}}
 @media(max-width:720px){.menu a:not(.botao){display:none}.grelha{grid-template-columns:repeat(2,1fr);grid-auto-rows:calc((50cqw - 2px)*9/16)}.peca,.peca.g,.peca.m{grid-column:span 1;grid-row:span 1}.peca.g{grid-column:span 2;grid-row:span 2}.cta{margin:48px var(--lat);padding:40px var(--lat)}.seta{display:none}}

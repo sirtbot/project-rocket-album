@@ -3,8 +3,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const DISCORD = 'https://discord.gg/keBr8g3XaM';
-// Capitulos por hora: [hora minima (HHMM), hora a mostrar]
-const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22'], [2240, '22:47']];
 
 const SEM_MOVIMENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s) => document.querySelector(s);
@@ -23,7 +21,6 @@ async function carregar() {
   animar();
 }
 
-function hhmm(file) { const m = file.match(/_(\d{4})\d{2}\./); return m ? Number(m[1]) : 0; }
 function hora(file) { const m = file.match(/_(\d{2})(\d{2})\d{2}\./); return m ? `${m[1]}:${m[2]}` : ''; }
 
 // Dentro de cada capitulo: cronologico; heroes grandes, as de 8+ medias de vez em quando.
@@ -38,23 +35,18 @@ function capitulos() {
   main.innerHTML = '';
   const ordenadas = [...fotos].sort((a, b) => a.file.localeCompare(b.file));
   visiveis = ordenadas;
-  CAPITULOS.forEach(([min, h], c) => {
-    const max = CAPITULOS[c + 1]?.[0] ?? 9999;
-    const lista = ordenadas.filter((f) => hhmm(f.file) >= min && hhmm(f.file) < max);
-    if (!lista.length) return;
-    const sec = document.createElement('section');
-    sec.className = 'capitulo';
-    sec.innerHTML = `<div class="capitulo-cab"><div class="hora">${h}</div><div class="conta">${lista.length} fotos</div></div><div class="grelha"></div>`;
-    const grelha = sec.querySelector('.grelha');
-    lista.forEach((f, i) => {
-      const el = document.createElement('article');
-      el.className = `peca ${tamanho(f, i)}`;
-      el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="Comboio ${hora(f.file)}" loading="lazy">`;
-      el.onclick = () => abrir(ordenadas.indexOf(f));
-      grelha.appendChild(el);
-    });
-    main.appendChild(sec);
+  const sec = document.createElement('section');
+  sec.className = 'capitulo';
+  sec.innerHTML = '<div class="grelha"></div>';
+  const grelha = sec.querySelector('.grelha');
+  ordenadas.forEach((f, i) => {
+    const el = document.createElement('article');
+    el.className = `peca ${tamanho(f, i)}`;
+    el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="Comboio ${hora(f.file)}" loading="lazy">`;
+    el.onclick = () => abrir(i);
+    grelha.appendChild(el);
   });
+  main.appendChild(sec);
 }
 
 function animar() {
