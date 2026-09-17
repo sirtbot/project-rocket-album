@@ -4,7 +4,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const DISCORD = 'https://discord.gg/keBr8g3XaM';
 // Capitulos por hora: [hora minima (HHMM), hora a mostrar]
-const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22']];
+const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22'], [2240, '22:47']];
 
 const SEM_MOVIMENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s) => document.querySelector(s);
