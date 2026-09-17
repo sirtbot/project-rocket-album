@@ -4,13 +4,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const DISCORD = 'https://discord.gg/keBr8g3XaM';
 const TIPOS = { comboio: 'Comboio', noite: 'Noite', paisagem: 'Paisagem', camiao: 'Camiões', cidade: 'Cidade' };
-// Capitulos por hora: [hora minima (HHMM), hora a mostrar, titulo, texto]
-const CAPITULOS = [
-  [0, '16:57', 'Antes da <span>partida</span>', 'Tarde de preparação. Os primeiros a chegar ao ponto de encontro.'],
-  [2100, '21:12', 'Ao <span>entardecer</span>', 'Sol a descer sobre a fila de camiões. Última luz do dia.'],
-  [2200, '22:06', 'Subida ao <span>Furkapass</span>', 'Neve, curvas apertadas e o comboio inteiro em fila pela montanha acima.'],
-  [2220, '22:22', 'A <span>chegada</span>', 'Todos no destino. Ninguém ficou para trás.'],
-];
+// Capitulos por hora: [hora minima (HHMM), hora a mostrar]
+const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22']];
 
 const SEM_MOVIMENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = (s) => document.querySelector(s);
@@ -45,13 +40,13 @@ function capitulos() {
   main.innerHTML = '';
   const ordenadas = [...fotos].sort((a, b) => a.file.localeCompare(b.file));
   visiveis = ordenadas;
-  CAPITULOS.forEach(([min, h, titulo, texto], c) => {
+  CAPITULOS.forEach(([min, h], c) => {
     const max = CAPITULOS[c + 1]?.[0] ?? 9999;
     const lista = ordenadas.filter((f) => hhmm(f.file) >= min && hhmm(f.file) < max);
     if (!lista.length) return;
     const sec = document.createElement('section');
     sec.className = 'capitulo';
-    sec.innerHTML = `<div class="capitulo-cab"><div class="hora">${h}</div><h2>${titulo}</h2><p>${texto}</p><div class="conta">${lista.length} fotos</div></div><div class="grelha"></div>`;
+    sec.innerHTML = `<div class="capitulo-cab"><div class="hora">${h}</div><div class="conta">${lista.length} fotos</div></div><div class="grelha"></div>`;
     const grelha = sec.querySelector('.grelha');
     lista.forEach((f, i) => {
       const el = document.createElement('article');
