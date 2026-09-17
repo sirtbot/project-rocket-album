@@ -48,6 +48,14 @@
   "duplicada_de": null
  },
  {
+  "file": "20260917_224944.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "comboio",
+  "legenda": "Fila de camioes na quinta",
+  "duplicada_de": null
+ },
+ {
   "file": "20260917_221215.jpg",
   "score": 8,
   "hero": true,
@@ -117,6 +125,14 @@
   "hero": false,
   "tipo": "comboio",
   "legenda": "Fila de camioes na estrada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_224808.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Scania vermelha em estrada",
   "duplicada_de": null
  },
  {
@@ -248,6 +264,22 @@
   "duplicada_de": null
  },
  {
+  "file": "20260917_224759.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Scania de frente na estrada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_224950.jpg",
+  "score": 7,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Volvo com bandeira de Portugal",
+  "duplicada_de": null
+ },
+ {
   "file": "20260917_201846.jpg",
   "score": 6,
   "hero": false,
@@ -376,6 +408,14 @@
   "duplicada_de": null
  },
  {
+  "file": "20260917_224948.jpg",
+  "score": 6,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Dois camioes lado a lado",
+  "duplicada_de": null
+ },
+ {
   "file": "20260917_195620.jpg",
   "score": 5,
   "hero": false,
@@ -421,6 +461,14 @@
   "hero": false,
   "tipo": "comboio",
   "legenda": "Comboio junto ao sinal de montanha",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_224802.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Camiao atras de cisterna",
   "duplicada_de": null
  }
 ]
