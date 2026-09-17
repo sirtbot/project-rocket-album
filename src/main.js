@@ -55,7 +55,8 @@ function capitulos() {
   const peca = (f, i) => {
     const el = document.createElement('article');
     el.className = `peca ${tamanho(f, i)}`;
-    el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="Comboio ${hora(f.file)}" loading="lazy">`;
+    const t = tamanho(f, i), sizes = t === 'g' ? '(max-width:720px) 100vw, 66vw' : t === 'm' ? '(max-width:720px) 50vw, 50vw' : '(max-width:720px) 50vw, 33vw';
+    el.innerHTML = `<img src="/photos/med/${f.file}" srcset="/photos/thumb/${f.file} 640w, /photos/med/${f.file} 1280w, /photos/full/${f.file} 1920w" sizes="${sizes}" alt="Comboio ${hora(f.file)}" loading="lazy">`;
     el.onclick = () => abrir(ordenadas.indexOf(f));
     return el;
   };
