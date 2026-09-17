@@ -5,7 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 const DISCORD = 'https://discord.gg/keBr8g3XaM';
 
 // Capitulos do modo "por hora": [hora minima (HHMM), hora a mostrar]
-const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22'], [2240, '22:47']];
+const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22'], [2240, '22:47'], [2350, 'Extra']];
 let modo = 'continua';
 try { modo = localStorage.getItem('modo') || modo; } catch {}
 
@@ -37,7 +37,8 @@ async function carregar() {
   animar();
 }
 
-function hora(file) { const m = file.match(/_(\d{2})(\d{2})\d{2}\./); return m ? `${m[1]}:${m[2]}` : ''; }
+// As fotos dos membros (sem hora real) ficam com o prefixo 2359 e mostram "Extra".
+function hora(file) { const m = file.match(/_(\d{2})(\d{2})\d{2}\./); return !m ? '' : m[1] + m[2] === '2359' ? 'Extra' : `${m[1]}:${m[2]}`; }
 
 // Dentro de cada capitulo: cronologico; heroes grandes, as de 8+ medias de vez em quando.
 function tamanho(f, i) {

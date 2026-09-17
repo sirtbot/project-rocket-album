@@ -64,6 +64,22 @@
   "duplicada_de": null
  },
  {
+  "file": "20260917_235902.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "camiao",
+  "legenda": "Scania cisterna à chuva",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_235903.jpg",
+  "score": 9,
+  "hero": true,
+  "tipo": "comboio",
+  "legenda": "Comboio alinhado junto aos silos",
+  "duplicada_de": null
+ },
+ {
   "file": "20260917_221215.jpg",
   "score": 8,
   "hero": true,
@@ -141,6 +157,30 @@
   "hero": false,
   "tipo": "camiao",
   "legenda": "Scania vermelha em estrada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_235901.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Fila de camiões na quinta",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_235904.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Carro piloto Project Rocket",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_235905.jpg",
+  "score": 8,
+  "hero": false,
+  "tipo": "noite",
+  "legenda": "Comboio de luzes na noite",
   "duplicada_de": null
  },
  {
