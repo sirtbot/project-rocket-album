@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Rocket · Comboio 17/9</title>
+  <meta name="description" content="As fotos do comboio Project Rocket de 17 de setembro de 2026. Obrigado por participar.">
   <link rel="icon" href="/logo-mark.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
@@ -11,22 +12,41 @@
 </head>
 <body>
   <header class="topo">
-    <a class="marca" href="/"><img src="/logo.svg" alt="Project Rocket"></a>
-    <nav class="filtros" id="filtros"></nav>
+    <a class="marca" href="#"><img src="/logo.svg" alt="Project Rocket"></a>
+    <nav class="menu">
+      <a href="#fotos">Fotos</a>
+      <a href="https://trucksbook.eu/convoy/26428" target="_blank" rel="noopener">TrucksBook</a>
+      <a class="botao" data-discord href="#" target="_blank" rel="noopener">Discord</a>
+    </nav>
   </header>
 
-  <section class="hero">
-    <div class="etiqueta">Comboio · 17 set 2026</div>
-    <h1 class="titulo"><span>Ninguém fica</span><span class="vermelho">para trás</span></h1>
-    <p class="sub"><b id="total">0</b> momentos da estrada, escolhidos foto a foto. <b class="ambar">Carrega numa</b> para abrir.</p>
+  <section class="capa">
+    <img class="capa-foto" id="capa-foto" src="" alt="">
+    <div class="capa-veu"></div>
+    <div class="capa-conteudo">
+      <div class="etiqueta">Comboio · 17 set 2026 · Furkapass</div>
+      <h1 class="titulo"><span>Obrigado por</span><span class="vermelho">participar</span></h1>
+      <p class="sub"><b class="ambar" id="total">0</b> fotos do comboio, para veres e guardares.</p>
+      <div class="accoes">
+        <a class="botao grande" href="#fotos">Ver as fotos</a>
+        <a class="botao grande secundario" data-discord href="#" target="_blank" rel="noopener">Entrar no Discord</a>
+      </div>
+    </div>
   </section>
 
-  <main class="grelha" id="grelha"></main>
+  <main id="fotos" class="capitulos"></main>
+
+  <section class="cta">
+    <img src="/logo-mark.svg" alt="">
+    <h2>Vem ao próximo</h2>
+    <p>Os comboios marcam-se no Discord. É lá que se combina a hora, a rota e quem leva o carro de escolta.</p>
+    <a class="botao grande" data-discord href="#" target="_blank" rel="noopener">Entrar no Discord da Project Rocket</a>
+  </section>
 
   <footer class="rodape">
     <div class="quadrado"></div>
     <span>NINGUÉM FICA PARA TRÁS</span>
-    <span class="direita">trucksbook.eu · Project Rocket</span>
+    <span class="direita">Project Rocket · trucksbook.eu</span>
   </footer>
 
   <div class="caixa" id="caixa" aria-hidden="true">

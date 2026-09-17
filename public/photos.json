@@ -334,5 +334,53 @@
   "tipo": "comboio",
   "legenda": "Fila de camiões junto às montanhas",
   "duplicada_de": null
+ },
+ {
+  "file": "20260917_195620.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camião de frente ao portão",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_220617.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "noite",
+  "legenda": "Estrada de noite com faróis",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221331.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "paisagem",
+  "legenda": "Comboio ao longo da montanha",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221340.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camiões em fila cerrada",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221342.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "camiao",
+  "legenda": "Camiões estacionados junto à serra",
+  "duplicada_de": null
+ },
+ {
+  "file": "20260917_221553.jpg",
+  "score": 5,
+  "hero": false,
+  "tipo": "comboio",
+  "legenda": "Comboio junto ao sinal de montanha",
+  "duplicada_de": null
  }
 ]

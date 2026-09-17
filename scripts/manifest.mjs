@@ -20,7 +20,7 @@ if (pastaSelecoes && existsSync(pastaSelecoes)) {
 }
 
 const lista = [...porFicheiro.values()]
-  .filter((f) => f.score >= 6 && !f.duplicada_de)
+  .filter((f) => f.score >= 5 && !f.duplicada_de)
   .sort((a, b) => (b.hero - a.hero) || (b.score - a.score) || a.file.localeCompare(b.file));
 
 writeFileSync(join(raiz, 'public/photos.json'), JSON.stringify(lista, null, 1));

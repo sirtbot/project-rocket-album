@@ -2,108 +2,103 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-const TIPOS = { todas: 'Todas', comboio: 'Comboio', noite: 'Noite', paisagem: 'Paisagem', camiao: 'Camiões', cidade: 'Cidade' };
+const DISCORD = 'https://discord.gg/keBr8g3XaM';
+const TIPOS = { comboio: 'Comboio', noite: 'Noite', paisagem: 'Paisagem', camiao: 'Camiões', cidade: 'Cidade' };
+// Capitulos por hora: [hora minima (HHMM), hora a mostrar, titulo, texto]
+const CAPITULOS = [
+  [0, '16:57', 'Antes da <span>partida</span>', 'Tarde de preparação. Os primeiros a chegar ao ponto de encontro.'],
+  [2100, '21:12', 'Ao <span>entardecer</span>', 'Sol a descer sobre a fila de camiões. Última luz do dia.'],
+  [2200, '22:06', 'Subida ao <span>Furkapass</span>', 'Neve, curvas apertadas e o comboio inteiro em fila pela montanha acima.'],
+  [2220, '22:22', 'A <span>chegada</span>', 'Todos no destino. Ninguém ficou para trás.'],
+];
+
+const SEM_MOVIMENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s) => document.querySelector(s);
 let fotos = [], visiveis = [], actual = 0;
 
-const $ = (s) => document.querySelector(s);
-const grelha = $('#grelha'), caixa = $('#caixa'), img = $('#caixa-img');
+document.querySelectorAll('[data-discord]').forEach((a) => { a.href = DISCORD; });
 
 async function carregar() {
   const r = await fetch('/photos.json', { cache: 'no-store' });
   fotos = (await r.json()).filter((f) => f.score > 0);
+  visiveis = fotos;
   $('#total').textContent = fotos.length;
-  filtros();
-  mostrar('todas');
-}
-
-function filtros() {
-  const nav = $('#filtros');
-  const presentes = new Set(fotos.map((f) => f.tipo));
-  nav.innerHTML = '';
-  for (const [k, v] of Object.entries(TIPOS)) {
-    if (k !== 'todas' && !presentes.has(k)) continue;
-    const b = document.createElement('button');
-    b.textContent = v;
-    b.dataset.tipo = k;
-    b.onclick = () => mostrar(k);
-    nav.appendChild(b);
-  }
-}
-
-function mostrar(tipo) {
-  document.querySelectorAll('.filtros button').forEach((b) => b.classList.toggle('activo', b.dataset.tipo === tipo));
-  visiveis = distribuir(tipo === 'todas' ? fotos : fotos.filter((f) => f.tipo === tipo));
-  grelha.innerHTML = '';
-  if (!visiveis.length) { grelha.innerHTML = '<div class="vazio">Ainda sem fotos aqui.</div>'; return; }
-  visiveis.forEach((f, i) => {
-    const el = document.createElement('article');
-    el.className = 'peca' + (f.hero ? ' g' : f.score >= 8 && i % 5 === 2 ? ' l' : '');
-    el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="${f.legenda}" loading="lazy">
-      <div class="veu"></div><span class="n">${String(i + 1).padStart(2, '0')}</span>
-      <div class="leg"><small>${TIPOS[f.tipo] || f.tipo} · ${hora(f.file)}</small>${f.legenda}</div>`;
-    el.onclick = () => abrir(i);
-    grelha.appendChild(el);
-  });
+  const capa = fotos.find((f) => f.hero) || fotos[0];
+  if (capa) $('#capa-foto').src = `/photos/full/${capa.file}`;
+  capitulos();
   animar();
 }
 
-// Uma foto grande a cada 6 pecas, em vez de todas as grandes empilhadas no topo.
-function distribuir(lista) {
-  const grandes = lista.filter((f) => f.hero), resto = lista.filter((f) => !f.hero), saida = [];
-  while (grandes.length || resto.length) {
-    if (grandes.length) saida.push(grandes.shift());
-    saida.push(...resto.splice(0, 5));
-  }
-  return saida;
+function hhmm(file) { const m = file.match(/_(\d{4})\d{2}\./); return m ? Number(m[1]) : 0; }
+function hora(file) { const m = file.match(/_(\d{2})(\d{2})\d{2}\./); return m ? `${m[1]}:${m[2]}` : ''; }
+
+// Dentro de cada capitulo: cronologico, com uma grande a cada 7 e uma media a cada 4.
+function tamanho(f, i) {
+  if (f.hero) return 'g';
+  if (f.score >= 8 && i % 4 === 1) return 'm';
+  if (f.score >= 7 && i % 3 === 2) return 'a';
+  return '';
 }
 
-function hora(file) {
-  const m = file.match(/_(\d{2})(\d{2})\d{2}\./);
-  return m ? `${m[1]}:${m[2]}` : '';
+function capitulos() {
+  const main = $('#fotos');
+  main.innerHTML = '';
+  const ordenadas = [...fotos].sort((a, b) => a.file.localeCompare(b.file));
+  visiveis = ordenadas;
+  CAPITULOS.forEach(([min, h, titulo, texto], c) => {
+    const max = CAPITULOS[c + 1]?.[0] ?? 9999;
+    const lista = ordenadas.filter((f) => hhmm(f.file) >= min && hhmm(f.file) < max);
+    if (!lista.length) return;
+    const sec = document.createElement('section');
+    sec.className = 'capitulo';
+    sec.innerHTML = `<div class="capitulo-cab"><div class="hora">${h}</div><h2>${titulo}</h2><p>${texto}</p><div class="conta">${lista.length} fotos</div></div><div class="grelha"></div>`;
+    const grelha = sec.querySelector('.grelha');
+    lista.forEach((f, i) => {
+      const el = document.createElement('article');
+      el.className = `peca ${tamanho(f, i)}`;
+      el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="${f.legenda}" loading="lazy"><div class="veu"></div>
+        <div class="leg"><small>${TIPOS[f.tipo] || f.tipo} · ${hora(f.file)}</small>${f.legenda}</div>`;
+      el.onclick = () => abrir(ordenadas.indexOf(f));
+      grelha.appendChild(el);
+    });
+    main.appendChild(sec);
+  });
 }
-
-const SEM_MOVIMENTO = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function animar() {
   if (SEM_MOVIMENTO) return;
-  ScrollTrigger.getAll().forEach((t) => t.kill());
-  gsap.set('.peca', { opacity: 0, y: 24 });
+  gsap.set('.peca', { opacity: 0, y: 20 });
   ScrollTrigger.batch('.peca', {
-    start: 'top 95%',
-    once: true,
-    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: .7, stagger: .06, ease: 'power3.out', overwrite: true }),
+    start: 'top 95%', once: true,
+    onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: .6, stagger: .05, ease: 'power3.out', overwrite: true }),
   });
+  gsap.utils.toArray('.capitulo-cab').forEach((el) => {
+    gsap.from(el, { x: -20, opacity: 0, duration: .7, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+  });
+  gsap.to('.capa-foto', { scale: 1, y: 60, ease: 'none', scrollTrigger: { trigger: '.capa', start: 'top top', end: 'bottom top', scrub: true } });
   ScrollTrigger.refresh();
 }
 
+const caixa = $('#caixa'), img = $('#caixa-img');
 function abrir(i) {
-  actual = i;
-  pintar();
-  caixa.classList.add('aberta');
-  caixa.setAttribute('aria-hidden', 'false');
+  actual = i; pintar();
+  caixa.classList.add('aberta'); caixa.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
-  gsap.fromTo(img, { scale: .94, opacity: 0 }, { scale: 1, opacity: 1, duration: .35, ease: 'power2.out' });
+  if (!SEM_MOVIMENTO) gsap.fromTo(img, { scale: .94, opacity: 0 }, { scale: 1, opacity: 1, duration: .35, ease: 'power2.out' });
 }
-
 function pintar() {
   const f = visiveis[actual];
-  img.src = `/photos/full/${f.file}`;
-  img.alt = f.legenda;
-  $('#caixa-legenda').textContent = f.legenda;
+  img.src = `/photos/full/${f.file}`; img.alt = f.legenda;
+  $('#caixa-legenda').textContent = `${hora(f.file)} · ${f.legenda}`;
   $('#caixa-n').textContent = `${actual + 1} / ${visiveis.length}`;
   [1, -1].forEach((d) => { const p = visiveis[actual + d]; if (p) new Image().src = `/photos/full/${p.file}`; });
 }
-
 function mover(d) {
   actual = (actual + d + visiveis.length) % visiveis.length;
+  if (SEM_MOVIMENTO) return pintar();
   gsap.fromTo(img, { x: 30 * d, opacity: 0 }, { x: 0, opacity: 1, duration: .3, onStart: pintar });
 }
-
-function fechar() {
-  caixa.classList.remove('aberta');
-  caixa.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}
+function fechar() { caixa.classList.remove('aberta'); caixa.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
 
 $('#fechar').onclick = fechar;
 $('#seg').onclick = () => mover(1);
@@ -119,9 +114,11 @@ let x0 = 0;
 caixa.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
 caixa.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) mover(dx < 0 ? 1 : -1); });
 
+addEventListener('scroll', () => $('.topo').classList.toggle('solido', scrollY > 40), { passive: true });
+
 if (!SEM_MOVIMENTO) {
-  gsap.from('.etiqueta', { y: 12, opacity: 0, duration: .5, delay: .1 });
-  gsap.from('.titulo span', { y: 40, opacity: 0, duration: .8, stagger: .12, ease: 'power3.out', delay: .2 });
-  gsap.from('.sub', { y: 16, opacity: 0, duration: .6, delay: .6 });
+  gsap.from('.capa .etiqueta', { y: 12, opacity: 0, duration: .5, delay: .2 });
+  gsap.from('.titulo span', { y: 50, opacity: 0, duration: .9, stagger: .14, ease: 'power3.out', delay: .3 });
+  gsap.from('.sub, .accoes', { y: 16, opacity: 0, duration: .6, stagger: .1, delay: .8 });
 }
 carregar();
