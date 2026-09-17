@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Rocket - Photo Album</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 80px 40px;
+      background: radial-gradient(circle at 50% 0%, rgba(225, 29, 46, 0.15) 0%, transparent 70%);
+    }
+
+    .header h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      opacity: 0;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: #aaa;
+      opacity: 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 60px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .photo-card {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #1a1a1a;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .photo-card:hover .photo-overlay {
+      opacity: 1;
+    }
+
+    .photo-overlay h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active { display: flex; }
+
+    .modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🚚 Project Rocket</h1>
+    <p>Momentos épicos das estradas</p>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="">
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import gsap from 'gsap';
+
+    const photos = [
+      { url: 'https://media.discordapp.net/attachments/996508827501473922/1550253800668008478/image.png?ex=6aada9dc&is=6aac585c&hm=ccbf70db803ce6613ecfdf76b3266ea55b00e31ccce7aa0bf840c901cc99b824&=&format=webp&quality=lossless&width=640&height=268', title: 'Convoy Épico' },
+      { url: 'https://media.discordapp.net/attachments/996508827501473922/1550253613555785758/image.png?ex=6aada9af&is=6aac582f&hm=04345f18d34868f5bddf4b3791162393462584cbe854fba232f7951c4f22fb8b&=&format=webp&quality=lossless&width=2048&height=1029', title: 'Viagem Noturna' },
+    ];
+
+    const gallery = document.getElementById('gallery');
+    
+    photos.forEach((photo, i) => {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.innerHTML = `
+        <img src="${photo.url}" alt="${photo.title}">
+        <div class="photo-overlay">
+          <h3>${photo.title}</h3>
+        </div>
+      `;
+      card.onclick = () => openModal(photo.url);
+      gallery.appendChild(card);
+    });
+
+    // Animações GSAP
+    gsap.to('.header h1', { duration: 0.8, opacity: 1, y: 0, delay: 0.2 });
+    gsap.to('.header p', { duration: 0.8, opacity: 1, y: 0, delay: 0.4 });
+    gsap.to('.photo-card', { 
+      duration: 0.8, 
+      opacity: 1, 
+      y: 0,
+      stagger: 0.1,
+      delay: 0.6
+    });
+
+    window.openModal = (url) => {
+      document.getElementById('modal-img').src = url;
+      document.getElementById('modal').classList.add('active');
+    };
+
+    window.closeModal = () => {
+      document.getElementById('modal').classList.remove('active');
+    };
+  </script>
+</body>
+</html>
