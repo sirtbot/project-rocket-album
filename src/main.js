@@ -3,7 +3,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const DISCORD = 'https://discord.gg/keBr8g3XaM';
-const TIPOS = { comboio: 'Comboio', noite: 'Noite', paisagem: 'Paisagem', camiao: 'Camiões', cidade: 'Cidade' };
 // Capitulos por hora: [hora minima (HHMM), hora a mostrar]
 const CAPITULOS = [[0, '16:57'], [2100, '21:12'], [2200, '22:06'], [2220, '22:22']];
 
@@ -50,8 +49,7 @@ function capitulos() {
     lista.forEach((f, i) => {
       const el = document.createElement('article');
       el.className = `peca ${tamanho(f, i)}`;
-      el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="${f.legenda}" loading="lazy"><div class="veu"></div>
-        <div class="leg"><small>${TIPOS[f.tipo] || f.tipo} · ${hora(f.file)}</small>${f.legenda}</div>`;
+      el.innerHTML = `<img src="/photos/thumb/${f.file}" alt="Comboio ${hora(f.file)}" loading="lazy">`;
       el.onclick = () => abrir(ordenadas.indexOf(f));
       grelha.appendChild(el);
     });
@@ -82,8 +80,8 @@ function abrir(i) {
 }
 function pintar() {
   const f = visiveis[actual];
-  img.src = `/photos/full/${f.file}`; img.alt = f.legenda;
-  $('#caixa-legenda').textContent = `${hora(f.file)} · ${f.legenda}`;
+  img.src = `/photos/full/${f.file}`; img.alt = `Comboio ${hora(f.file)}`;
+  $('#caixa-legenda').textContent = hora(f.file);
   $('#caixa-n').textContent = `${actual + 1} / ${visiveis.length}`;
   [1, -1].forEach((d) => { const p = visiveis[actual + d]; if (p) new Image().src = `/photos/full/${p.file}`; });
 }

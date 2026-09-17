@@ -49,12 +49,6 @@ a{color:inherit;text-decoration:none}
 .peca.m{grid-column:span 3;grid-row:span 3}
 .peca img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .peca:hover img{transform:scale(1.06)}
-.peca .veu{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0) 55%);opacity:0;transition:opacity .3s}
-.peca:hover .veu{opacity:1}
-.peca .leg{position:absolute;left:14px;right:14px;bottom:12px;font-weight:700;font-size:13px;transform:translateY(6px);opacity:0;transition:.3s}
-.peca:hover .leg{transform:none;opacity:1}
-.peca .leg small{display:block;color:var(--ambar);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px}
-.peca.g .leg{font-size:18px;left:22px;bottom:20px}
 
 .cta{margin:80px var(--lat);padding:64px var(--lat);background:var(--vermelho);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px}
 .cta img{height:72px}
